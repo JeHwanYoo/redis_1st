@@ -54,6 +54,6 @@ export const options = {
 // about authoring k6 scripts.
 //
 export default function () {
-  http.get('http://localhost:8080/api/v1/movies/search?title=어벤져스');
+  http.get(encodeURI('http://localhost:8080/api/v1/movies/search?title=어벤져스'));
   sleep(1);
 }
