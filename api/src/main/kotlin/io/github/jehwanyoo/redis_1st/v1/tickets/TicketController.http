@@ -1,0 +1,8 @@
+POST http://localhost:8080/api/v1/tickets
+Content-Type: application/json
+
+{
+  "movie_id": "189b7bb6-60f6-47b3-b667-91857071959c",
+  "screen_id": "5f579bfd-f52e-4520-bb18-4fca6b9c1d12",
+  "show_time_id": "06a5097f-01e8-45e3-bddd-4a377ef1a5fb"
+}
