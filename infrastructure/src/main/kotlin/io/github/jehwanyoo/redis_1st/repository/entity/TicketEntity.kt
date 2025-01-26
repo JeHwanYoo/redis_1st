@@ -27,10 +27,10 @@ class TicketEntity(
 
     @CreatedDate
     @Column(updatable = false)
-    val createdAt: LocalDateTime,
+    val createdAt: LocalDateTime?,
 ) {
     fun toDomain(): Ticket {
-        if (id == null || movie.id == null || screen.id == null || showTime.id == null) {
+        if (id == null || movie.id == null || screen.id == null || showTime.id == null || createdAt == null) {
             throw IllegalStateException("Entity is not persisted yet: $this")
         }
 
