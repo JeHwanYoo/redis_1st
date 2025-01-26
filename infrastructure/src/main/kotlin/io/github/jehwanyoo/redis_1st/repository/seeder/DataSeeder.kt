@@ -80,6 +80,7 @@ class DataSeeder(
                     startTime,
                     movie,
                     screen,
+                    emptyList(),
                     LocalDateTime.now(),
                     LocalDateTime.now(),
                 )

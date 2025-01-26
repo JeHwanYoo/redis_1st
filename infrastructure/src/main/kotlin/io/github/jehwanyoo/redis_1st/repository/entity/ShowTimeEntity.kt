@@ -25,6 +25,9 @@ class ShowTimeEntity(
     @JoinColumn(name = "screen_id", nullable = false)
     val screen: ScreenEntity,       // 연관된 상영관
 
+    @OneToMany(mappedBy = "showTime", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+    val tickets: List<TicketEntity> = emptyList(),
+
     @CreatedDate
     @Column(updatable = false)
     val createdAt: LocalDateTime,
