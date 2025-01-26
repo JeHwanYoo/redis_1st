@@ -4,10 +4,12 @@ import io.github.jehwanyoo.redis_1st.model.ShowTime
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 import java.util.*
 
 @Entity
+@EntityListeners(AuditingEntityListener::class)
 @Table(name = "show_time")
 class ShowTimeEntity(
     @Id

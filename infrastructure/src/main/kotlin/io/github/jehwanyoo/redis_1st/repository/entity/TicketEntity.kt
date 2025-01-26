@@ -3,10 +3,12 @@ package io.github.jehwanyoo.redis_1st.repository.entity
 import io.github.jehwanyoo.redis_1st.model.Ticket
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDateTime
 import java.util.*
 
 @Entity
+@EntityListeners(AuditingEntityListener::class)
 @Table(name = "ticket")
 class TicketEntity(
     @Id
