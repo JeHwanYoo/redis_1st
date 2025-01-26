@@ -36,7 +36,15 @@ class DataSeeder(
 
         // 상영관 생성
         val screens = screenNames.map {
-            ScreenEntity(null, it, Random.nextInt(5, 10), Random.nextInt(5, 10))
+            ScreenEntity(
+                null,
+                it,
+                Random.nextInt(5, 10),
+                Random.nextInt(5, 10),
+                emptyList(),
+                LocalDateTime.now(),
+                LocalDateTime.now(),
+            )
         }
         screenRepository.saveAll(screens)
 
@@ -50,7 +58,9 @@ class DataSeeder(
                 Random.nextInt(90, 180), // 90~180분 사이의 러닝타임
                 listOf("드라마", "액션", "판타지", "코미디").random(),
                 listOf("12세 관람가", "15세 관람가").random(),
-                emptyList()
+                emptyList(),
+                LocalDateTime.now(),
+                LocalDateTime.now(),
             )
         }
         movieRepository.saveAll(movies)
@@ -69,7 +79,9 @@ class DataSeeder(
                     null,
                     startTime,
                     movie,
-                    screen
+                    screen,
+                    LocalDateTime.now(),
+                    LocalDateTime.now(),
                 )
             )
         }
