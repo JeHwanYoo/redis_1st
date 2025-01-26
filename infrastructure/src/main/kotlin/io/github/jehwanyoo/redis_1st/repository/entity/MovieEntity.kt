@@ -2,7 +2,11 @@ package io.github.jehwanyoo.redis_1st.repository.entity
 
 import io.github.jehwanyoo.redis_1st.model.Movie
 import jakarta.persistence.*
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
+import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 
 @Entity
@@ -10,6 +14,7 @@ import java.util.*
     name = "movie",
     indexes = [Index(name = "idx_movie_title", columnList = "title")]
 )
+@EntityListeners(AuditingEntityListener::class)
 class MovieEntity(
     @Id
     @GeneratedValue
@@ -34,7 +39,14 @@ class MovieEntity(
     val rating: String,                   // 영상물 등급
 
     @OneToMany(mappedBy = "movie", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    val showTimes: List<ShowTimeEntity> = emptyList() // 상영 시간 리스트
+    val showTimes: List<ShowTimeEntity> = emptyList(), // 상영 시간 리스트
+
+    @CreatedDate
+    @Column(updatable = false)
+    val createdAt: LocalDateTime,
+
+    @LastModifiedDate
+    val updatedAt: LocalDateTime,
 ) {
     fun toDomain(): Movie {
         if (id == null) {
@@ -54,6 +66,8 @@ class MovieEntity(
             genre = genre,
             rating = rating,
             screens = screens,
+            createdAt = createdAt,
+            updatedAt = updatedAt,
         )
     }
 }

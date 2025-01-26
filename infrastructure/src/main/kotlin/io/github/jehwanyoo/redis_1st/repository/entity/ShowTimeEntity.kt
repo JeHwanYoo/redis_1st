@@ -2,6 +2,8 @@ package io.github.jehwanyoo.redis_1st.repository.entity
 
 import io.github.jehwanyoo.redis_1st.model.ShowTime
 import jakarta.persistence.*
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
 import java.time.LocalDateTime
 import java.util.*
 
@@ -22,6 +24,13 @@ class ShowTimeEntity(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "screen_id", nullable = false)
     val screen: ScreenEntity,       // 연관된 상영관
+
+    @CreatedDate
+    @Column(updatable = false)
+    val createdAt: LocalDateTime,
+
+    @LastModifiedDate
+    val updatedAt: LocalDateTime,
 ) {
     fun toDomain(): ShowTime {
         if (id == null || movie.id == null || screen.id == null) {
@@ -33,6 +42,8 @@ class ShowTimeEntity(
             movieId = movie.id,
             screenId = screen.id,
             startTime = startTime,
+            createdAt = createdAt,
+            updatedAt = updatedAt,
         )
     }
 }

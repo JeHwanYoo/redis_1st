@@ -2,6 +2,9 @@ package io.github.jehwanyoo.redis_1st.repository.entity
 
 import io.github.jehwanyoo.redis_1st.model.Screen
 import jakarta.persistence.*
+import org.springframework.data.annotation.CreatedDate
+import org.springframework.data.annotation.LastModifiedDate
+import java.time.LocalDateTime
 import java.util.*
 
 @Entity
@@ -21,7 +24,14 @@ class ScreenEntity(
     val column: Int,            // 좌석 열 수
 
     @OneToMany(mappedBy = "screen", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-    val showTimes: List<ShowTimeEntity> = emptyList()
+    val showTimes: List<ShowTimeEntity> = emptyList(),
+
+    @CreatedDate
+    @Column(updatable = false)
+    val createdAt: LocalDateTime,
+
+    @LastModifiedDate
+    val updatedAt: LocalDateTime,
 ) {
     fun toDomain(): Screen {
         if (id == null) {
@@ -33,7 +43,9 @@ class ScreenEntity(
             name = name,
             row = row,
             column = column,
-            showTimes = showTimes.map { it.toDomain() }
+            showTimes = showTimes.map { it.toDomain() },
+            createdAt = createdAt,
+            updatedAt = updatedAt,
         )
     }
 }
