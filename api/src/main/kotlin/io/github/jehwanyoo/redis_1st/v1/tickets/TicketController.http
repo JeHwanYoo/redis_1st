@@ -2,7 +2,7 @@ POST http://localhost:8080/api/v1/tickets
 Content-Type: application/json
 
 {
-  "movie_id": "189b7bb6-60f6-47b3-b667-91857071959c",
-  "screen_id": "5f579bfd-f52e-4520-bb18-4fca6b9c1d12",
-  "show_time_id": "06a5097f-01e8-45e3-bddd-4a377ef1a5fb"
+  "movie_id": "488d0e49-e664-494d-9e77-611748ce8f17",
+  "screen_id": "e4843f61-9a9e-465d-8ec0-0440c32b99cf",
+  "show_time_id": "00191ebf-78c2-4c70-b597-1354972402d0"
 }

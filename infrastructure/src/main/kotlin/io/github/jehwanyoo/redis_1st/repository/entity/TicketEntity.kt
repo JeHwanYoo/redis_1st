@@ -28,11 +28,11 @@ class TicketEntity(
     val showTime: ShowTimeEntity,   // 연관된 시간대
 
     @CreatedDate
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     val createdAt: LocalDateTime?,
 ) {
     fun toDomain(): Ticket {
-        if (id == null || movie.id == null || screen.id == null || showTime.id == null || createdAt == null) {
+        if (id == null || movie.id == null || screen.id == null || showTime.id == null) {
             throw IllegalStateException("Entity is not persisted yet: $this")
         }
 
@@ -41,7 +41,8 @@ class TicketEntity(
             movieId = movie.id,
             screenId = screen.id,
             showTimeId = showTime.id,
-            createdAt = createdAt,
+            // @Fixme
+            createdAt = createdAt ?: LocalDateTime.now(),
         )
     }
 }
